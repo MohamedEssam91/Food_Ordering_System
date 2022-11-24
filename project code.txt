@@ -1,0 +1,85 @@
+CREATE TABLE CUSTOMER
+(
+First_name VARCHAR2 (10),
+Last_name VARCHAR2 (10),
+Customer_ID number (10)  ,
+Phone_no number (15),
+Street VARCHAR2 (10),
+Area VARCHAR2 (10),
+City VARCHAR2 (10),
+Building_no number (20),
+Apartment_no number (20),
+CONSTRAINT c_id_pk PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE MENU (
+Customer_ID NUMBER (10)UNIQUE NOT NULL,  
+M_Food_name VARCHAR2 (20), 
+constraint C_id_fk FOREIGN KEY Customer_ID REFEReNCES CUSTOMER ( Customer_ID),
+Constraint fdname_ pk PRIMARY KEY (Food_name )
+);
+
+CREATE TABLE DELIVIRY_MAN(
+D_First_Name VARCHAR2 (10),
+D_Last_Name VARCHAR2 (10),
+D_Phone_No number (20),
+D_ID number (20),
+CONSTRAINT delman_pk PRIMARY KEY (D_ID)
+
+
+
+);
+CREATE TABLE ORDERS
+(
+
+Order_date
+Order_time
+Order_ID number (20),
+Estimate_delivery_time 
+Deliviry_Man_ID number (20),
+Customer_ID number (20),
+CONSTRAINT ord_id_ pk PRIMARY key (Order_ID),
+CONSTRAINT dman_ID_fk FOREIGN  key Deliviry_Man_ID references DELIVIRY_MAN (D_ID),
+CONSTRAINT cus_id_fk Foreign key Customer_ID references  CUSTOMER (Customer_ID)
+);
+CREATE TABLE Orders_Details
+
+(
+Order_ID number (20),
+O_Food_Name VARCHAR2 (10),
+Quantity number (20),
+constraint qun_pk primary key (Quantity),
+constraint ord_id_fk foreign key (Order_ID)references ORDERS (Order_ID),
+constraint  o_food_fk foreign key (O_Food_Name) references MENU (M_Food_name)
+);
+CREATE TABLE Payment (
+Card_Number number (20),
+Payment_Type VARCHAR2 (10),
+Order_ID number (20),
+);
+
+
+CREATE TABLE Order_Price (
+O_Price number (20),
+Order_ID number (20),
+);
+
+
+
+CREATE TABLE  Food_Price (
+F_Price number (20),
+Food_Name VARCHAR2 (10),
+
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
